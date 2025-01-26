@@ -1,8 +1,9 @@
 import { Link, router } from 'expo-router';
 import colors from '@/constants/colors'
 import { Ionicons } from '@expo/vector-icons'
-import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView, ScrollView, Alert } from "react-native";
 import { useState } from 'react';
+import { supabase } from "../../../lib/supabase"
 
 export default function Signup(){
 
@@ -12,16 +13,30 @@ export default function Signup(){
 
     const[loading, setLoading] = useState(false);
 
-    function handleSignUp(){
-        alert("Sign")
+    async function handleSignUp(){
+        alert("Cadastrando ...");
 
-        console.log({
-            name,
-            email,
-            password
-        })
+        // const { data, error } = await supabase.auth.signUp({
+        //     email: email,
+        //     password: password,
+        //     options:{
+        //         data:{
+        //            name: name,     
+        //         }
+        //     }
+        // })
+
+        // if(error) {
+        //     Alert.alert(error.message);
+        //     setLoading(false);
+        //     return
+        // }
+
+        // setLoading(false);
+        // Alert.alert("Cadastrado com sucesso");
+        // router.replace('/')
+        // // // setTimeout(() => { }, 2000)
     }
-
     return(
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView style={{ flex: 1 }}>
@@ -65,12 +80,14 @@ export default function Signup(){
                     </View>
 
                     <Pressable style={styles.button} onPress={handleSignUp}>
-                        <Text style={styles.buttonText}>Cadastrar</Text>
+                        <Text style={styles.buttonText}>
+                            { loading ? 'Carregando...' : 'Cadastrar'}
+                        </Text>
                     </Pressable>
 
                     <Link href="/" style={styles.link}>
                         <Text>Já tem uma conta?  
-                            <Text style={styles.textCadastrar}>Fazer um login</Text>
+                            <Text style={styles.textCadastrar}></Text>
                         </Text>
                     </Link>
                 </View>

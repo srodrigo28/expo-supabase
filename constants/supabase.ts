@@ -1,0 +1,3 @@
+
+export const supaUrl ="https://oyqgitxmvvqwfbpjlecq.supabase.co"
+export const anoKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95cWdpdHhtdnZxd2ZicGpsZWNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4NjI4NTUsImV4cCI6MjA1MzQzODg1NX0.itU07FzkSQnCiDjKXQ1-hSl7U9v1hZx2lDYMkA6spUE"
