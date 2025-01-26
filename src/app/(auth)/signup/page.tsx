@@ -1,7 +1,7 @@
 import { Link, router } from 'expo-router';
 import colors from '@/constants/colors'
 import { Ionicons } from '@expo/vector-icons'
-import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
+import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView, ScrollView } from "react-native";
 import { useState } from 'react';
 
 export default function Signup(){
@@ -14,59 +14,69 @@ export default function Signup(){
 
     function handleSignUp(){
         alert("Sign")
+
+        console.log({
+            name,
+            email,
+            password
+        })
     }
 
     return(
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <View style={styles.viewBack}>
-                    <Pressable onPress={ () => router.back() } style={styles.backButton}>
-                        <Ionicons name="arrow-back" size={30} color={colors.green} />
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <View style={styles.viewBack}>
+                        <Pressable onPress={ () => router.back() } style={styles.backButton}>
+                            <Ionicons name="arrow-back" size={30} color={colors.green} />
+                        </Pressable>
+                        <Text style={styles.logoText}>
+                            Dev <Text style={{color: colors.green}}>App</Text>
+                        </Text>
+                    </View>
+
+                    <Text style={styles.slogan}>
+                        Seu futuro passa por aqui.
+                    </Text>
+                </View>
+
+                <View style={styles.form}>
+
+                    <View style={styles.label}>
+                        <Text style={styles.textLabel}>Nome Completo</Text>
+                        <TextInput placeholder='Nome Completo'
+                        value={name} onChangeText={setName}
+                            style={styles.input} />
+                    </View>
+                    
+                    <View style={styles.label}>
+                        <Text style={styles.textLabel}>Email</Text>
+                        <TextInput placeholder='Digite seu email'
+                        value={email} onChangeText={setEmail}
+                            style={styles.input} />
+                    </View>
+
+                    <View style={styles.label}>
+                        <Text style={styles.textLabel}>Senha</Text>
+                        <TextInput placeholder='Digite sua senha'
+                            value={password} onChangeText={setPassword}
+                        secureTextEntry style={styles.input} />
+                    </View>
+
+                    <Pressable style={styles.button} onPress={handleSignUp}>
+                        <Text style={styles.buttonText}>Cadastrar</Text>
                     </Pressable>
-                    <Text style={styles.logoText}>
-                        Dev <Text style={{color: colors.green}}>App</Text>
-                    </Text>
-                </View>
 
-                <Text style={styles.slogan}>
-                    Seu futuro passa por aqui.
-                </Text>
+                    <Link href="/" style={styles.link}>
+                        <Text>Já tem uma conta?  
+                            <Text style={styles.textCadastrar}>Fazer um login</Text>
+                        </Text>
+                    </Link>
+                </View>
             </View>
-
-            <View style={styles.form}>
-
-                <View style={styles.label}>
-                    <Text style={styles.textLabel}>Nome Completo</Text>
-                    <TextInput placeholder='Nome Completo'
-                    value={name} onChangeText={setName}
-                        style={styles.input} />
-                </View>
-                
-                <View style={styles.label}>
-                    <Text style={styles.textLabel}>Email</Text>
-                    <TextInput placeholder='Digite seu email'
-                    value={email} onChangeText={setEmail}
-                        style={styles.input} />
-                </View>
-
-                <View style={styles.label}>
-                    <Text style={styles.textLabel}>Senha</Text>
-                    <TextInput placeholder='Digite sua senha'
-                        value={password} onChangeText={setPassword}
-                       secureTextEntry style={styles.input} />
-                </View>
-
-                <Pressable style={styles.button} onPress={handleSignUp}>
-                    <Text style={styles.buttonText}>Cadastrar</Text>
-                </Pressable>
-
-                <Link href="/" style={styles.link}>
-                    <Text>Já tem uma conta?  
-                        <Text style={styles.textCadastrar}>Fazer um login</Text>
-                    </Text>
-                </Link>
-            </View>
-        </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontWeight: 'bold',
         fontSize: 20,
-        marginLeft: 10,
+        marginLeft: 5,
         paddingHorizontal: 14,
     },
     slogan: {
@@ -110,6 +120,7 @@ const styles = StyleSheet.create({
     textLabel:{
         fontSize: 18,
         fontWeight: 'bold',
+        paddingLeft: 3
     },
     input:{
         borderWidth: 1,
